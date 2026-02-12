@@ -1,0 +1,231 @@
+
+1 What is Web Scraping
+
+2 API Design
+ 
+learning basics
+
+ HTTP
+ HTTP Methods
+ HTTP Status Codes
+ HTTP Headers
+
+Different API styles:
+ What is API
+ Types of API
+ Difference between each API
+
+
+1.What is Web Scraping
+
+An automated method to extract data from websites.
+Faster and more scalable than manual copy-paste.
+Used for research, marketing, and data analysis.
+
+1.1 Uses of Web Scraping
+
+Market & competitor analysis
+Financial data collection
+Social media monitoring
+Research & machine learning
+
+1.2 Techniques
+
+Manual: Copy-paste (slow, not practical).
+
+Automated:
+
+HTML parsing
+DOM parsing
+API access (best when available)
+Headless browsers (Selenium, Playwright)
+
+1.3 Popular Tools
+
+BeautifulSoup + Requests (beginner)
+Scrapy (advanced)
+Selenium / Playwright (dynamic sites)
+
+
+2 API Design
+
+2.1 HTTP(HyperText Transfer Protocol)
+
+A protocol for communication between client and server.
+Works on request–response model.
+Used by web browsers and APIs.
+
+2.2 HTTP Methods
+
+HTTP methods define the type of request a client makes to a server.
+They are essential for API design.
+They enable communication between client and server.
+
+Common HTTP methods:
+
+GET – Read data
+
+POST – Create data
+
+PUT – Update/replace data
+
+PATCH – Partially update data
+
+DELETE – Remove data
+
+2.3 HTTP Status Codes 
+
+Show the result of an API request.
+Are 3-digit numbers.
+First digit indicates response type.
+
+Example:
+
+200 → Success
+
+404 → Not found
+
+Help in debugging and understanding APIs.
+
+2.4 HTTP Headers 
+
+HTTP Headers carry extra information between client and server.
+They are part of request and response messages.
+
+Content type
+
+Authentication
+
+Cookies
+
+Important for:
+
+Secure communication
+
+Proper data exchange
+
+Error handling
+
+2.5 Cookies
+
+Cookies are small data stored in the browser.
+They enable stateful sessions in HTTP.
+
+Used in:
+
+Authentication
+
+Storing session tokens
+
+Help in:
+
+Keeping users logged in
+
+Maintaining user sessions
+
+Improving user experience
+
+Securing user data
+
+2.6 URL, Query & Path Parameters 
+
+URL: URL identifies the resource on the server.
+
+Query parameters are used for:
+
+Filtering
+
+Sorting
+
+Searching data
+
+Path parameters : represent variable values in the URL.
+
+They help in:
+
+Customizing responses
+Efficient data retrieval
+Making APIs scalable and user-friendly
+
+2.7 TCP/IP 
+
+TCP/IP stands for Transmission Control Protocol / Internet Protocol.
+
+It is the basic communication protocol of the Internet.
+
+Focus on:
+
+Data delivery
+
+Correct order of data
+
+Error checking
+
+APIs use TCP/IP to communicate over networks.
+
+Understanding TCP/IP helps in better API design.
+
+
+Different API styles:
+
+What are APIs 
+
+API stands for Application Programming Interface.
+
+APIs allow software applications to communicate with each other.
+
+They hide internal complexity and expose only required functionality.
+
+Define:
+
+How to send data
+
+How to retrieve data
+
+How to modify data
+
+APIs enable:
+
+System integration
+
+Data exchange
+
+Modern software development
+
+2. Types of API (Styles)
+
+REST – Simple, JSON-based.
+
+SOAP – XML, secure, strict.
+
+GraphQL – Client chooses data.
+
+gRPC – Very fast, binary.
+
+WebSocket – Real-time.
+
+3. Difference between each API
+
+REST → Most common, easy.
+
+SOAP → Secure, complex.
+
+GraphQL → Flexible data.
+
+gRPC → High performance.
+
+WebSocket → Live communication.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
