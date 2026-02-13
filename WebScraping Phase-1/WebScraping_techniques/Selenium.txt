@@ -1,0 +1,55 @@
+Selenium
+
+1. What it is Selenium:
+
+A browser automation tool used for web scraping and testing
+
+Works with real browsers (Chrome, Firefox, Edge)
+
+
+2. Selenium (Role):
+
+Opens a real browser
+
+Interacts with web elements
+
+Can click, type, scroll, submit forms
+
+
+3. How it works
+
+Launches browser using WebDriver
+
+Loads the webpage
+
+Finds elements and performs actions
+
+Extracts visible data
+
+
+Flow:
+
+Website → Browser → Selenium → Actions → Data
+
+
+
+4. When to use:
+
+Dynamic websites
+
+JavaScript-rendered content
+
+Login required pages
+
+
+
+5. Best use cases:
+
+Social media scraping
+
+Auto login systems
+
+Form filling bots
+
+Infinite scrolling pages
+

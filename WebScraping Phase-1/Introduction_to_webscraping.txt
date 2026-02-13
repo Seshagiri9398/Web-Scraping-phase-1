@@ -1,0 +1,35 @@
+
+Web Scraping
+
+
+1.What is Web Scraping
+
+An automated method to extract data from websites.
+Faster and more scalable than manual copy-paste.
+Used for research, marketing, and data analysis.
+
+1.1 Uses of Web Scraping
+
+Market & competitor analysis
+Financial data collection
+Social media monitoring
+Research & machine learning
+
+1.2 Techniques
+
+Manual: Copy-paste (slow, not practical).
+
+Automated:
+
+HTML parsing
+DOM parsing
+API access (best when available)
+Headless browsers (Selenium, Playwright)
+
+1.3 Popular Tools
+
+BeautifulSoup + Requests (beginner)
+Scrapy (advanced)
+Selenium / Playwright (dynamic sites)
+
+

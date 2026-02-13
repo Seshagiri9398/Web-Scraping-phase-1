@@ -1,52 +1,4 @@
 
-1 What is Web Scraping
-
-2 API Design
- 
-learning basics
-
- HTTP
- HTTP Methods
- HTTP Status Codes
- HTTP Headers
-
-Different API styles:
- What is API
- Types of API
- Difference between each API
-
-
-1.What is Web Scraping
-
-An automated method to extract data from websites.
-Faster and more scalable than manual copy-paste.
-Used for research, marketing, and data analysis.
-
-1.1 Uses of Web Scraping
-
-Market & competitor analysis
-Financial data collection
-Social media monitoring
-Research & machine learning
-
-1.2 Techniques
-
-Manual: Copy-paste (slow, not practical).
-
-Automated:
-
-HTML parsing
-DOM parsing
-API access (best when available)
-Headless browsers (Selenium, Playwright)
-
-1.3 Popular Tools
-
-BeautifulSoup + Requests (beginner)
-Scrapy (advanced)
-Selenium / Playwright (dynamic sites)
-
-
 2 API Design
 
 2.1 HTTP(HyperText Transfer Protocol)
@@ -73,7 +25,7 @@ PATCH – Partially update data
 
 DELETE – Remove data
 
-2.3 HTTP Status Codes 
+2.3 HTTP Status Codes
 
 Show the result of an API request.
 Are 3-digit numbers.
@@ -87,7 +39,7 @@ Example:
 
 Help in debugging and understanding APIs.
 
-2.4 HTTP Headers 
+2.4 HTTP Headers
 
 HTTP Headers carry extra information between client and server.
 They are part of request and response messages.
@@ -127,7 +79,8 @@ Improving user experience
 
 Securing user data
 
-2.6 URL, Query & Path Parameters 
+
+2.6 URL, Query & Path Parameters
 
 URL: URL identifies the resource on the server.
 
@@ -147,7 +100,7 @@ Customizing responses
 Efficient data retrieval
 Making APIs scalable and user-friendly
 
-2.7 TCP/IP 
+2.7 TCP/IP
 
 TCP/IP stands for Transmission Control Protocol / Internet Protocol.
 
@@ -168,7 +121,7 @@ Understanding TCP/IP helps in better API design.
 
 Different API styles:
 
-What are APIs 
+1 What are APIs
 
 API stands for Application Programming Interface.
 
@@ -191,6 +144,7 @@ System integration
 Data exchange
 
 Modern software development
+
 
 2. Types of API (Styles)
 
@@ -215,17 +169,3 @@ GraphQL → Flexible data.
 gRPC → High performance.
 
 WebSocket → Live communication.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
