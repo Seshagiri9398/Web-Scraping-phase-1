@@ -1,0 +1,127 @@
+1 user-agent strings
+
+A User-Agent (UA) is a text message sent by a device to a website. It tells the website which device is being used (phone, laptop, or bot), which operating system it has (Android, iOS, Windows), and which browser is being used (Chrome, Safari, Edge). This helps the website show the correct content for the user.
+
+how exactly work:
+
+Which device (phone, laptop, bot, etc.)
+
+Which system (Android, iOS, Windows)
+
+Which browser (Chrome, Safari, Edge)
+
+
+
+example - Android
+
+User-Agent:
+
+Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36
+
+Mozilla/5.0 (Linux; Android 10) Chrome/114.0 Mobile
+
+means: 
+
+ Android 10   ->  Phone system 
+ Chrome 114   ->  Browser      
+ Mobile       ->  It’s a phone 
+
+So the website understands:
+
+This user is on an Android phone using Chrome.
+
+
+example - Windows laptop
+
+Mozilla/5.0 (Windows NT 10.0) Chrome/120.0
+
+
+Means:
+
+Windows 10 computer
+
+Chrome browser
+
+So website shows desktop version.
+
+
+
+
+example - bots Google
+
+Mozilla/5.0 (compatible; Googlebot/2.1)
+
+Means:
+
+This is not a human
+
+It’s Google robot crawling the site
+
+
+
+2.importants of User-Agent
+
+
+a) Website behavior
+
+Websites change content based on UA:
+
+Mobile users → mobile layout
+
+Desktop users → desktop layout
+
+
+b) Web scraping
+
+Some websites block bots.
+
+So we fake a real browser UA.
+
+
+c) Analytics
+
+Companies track:
+
+Which browsers users use
+
+Which devices are popular
+
+
+
+3.Important Notes
+
+User-Agent can be faked
+
+Not secure for authentication
+
+
+Some sites check:
+
+IP
+
+Cookies
+
+Headers
+
+JS behavior
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
