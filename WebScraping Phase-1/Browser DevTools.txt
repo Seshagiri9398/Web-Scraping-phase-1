@@ -1,0 +1,236 @@
+Browser DevTools 
+
+1.What is Browser DevTools?
+
+Browser Developer Tools (DevTools) are built-in tools in browsers (Chrome, Edge, Firefox) that let you:
+
+Inspect HTML & CSS
+
+Debug JavaScript
+
+Monitor network requests
+
+Test APIs
+
+Analyze performance
+
+
+For web scraping, DevTools helps you find exactly where the data is on the page.
+
+
+
+2.Main Panels in DevTools (Beginner Focus)
+
+5 most important ones:
+
+Elements
+
+Console
+
+Network
+
+Application
+
+Sources
+
+
+1. Elements Panel (HTML + CSS)
+
+What it is:
+
+Shows the HTML structure and CSS styles of the page.
+
+
+Why important:
+
+See how a website is built
+
+Find tags for web scraping
+
+Modify UI temporarily
+
+Practical Example:
+
+Open any website → Right click on text → Inspect
+
+       <h1 class="title">Welcome</h1>
+
+Now you can:
+
+Change text directly
+
+Change color in CSS
+
+Find IDs & classes for scraping
+
+
+
+Real use:
+
+If you want to scrape product names:
+
+    soup.find_all("h1", class_="title")
+
+
+
+
+2. Console Panel (JavaScript)
+
+What it is:
+
+A place to run JavaScript commands.
+
+
+Why important:
+
+Debug errors
+
+Test code quickly
+
+Extract data from page
+
+
+Practical Example:
+
+document.title -> write on console 
+
+output: like title amazon india
+
+
+
+3. Network Panel 
+
+What it is:
+
+Shows all requests made by the browser:
+
+APIs
+
+Images
+
+JSON data
+
+
+Why important:
+
+Find hidden APIs
+
+See request headers
+
+Reverse engineer websites
+
+
+
+Practical Example:
+
+
+Open Network tab
+
+Refresh page
+
+Click Fetch/XHR
+
+You’ll see requests like:
+
+https://api.example.com/products
+
+
+Click it → Response:
+
+
+[
+  {"id":1,"name":"Phone","price":10000}
+]
+
+
+Real use:
+
+Now you can call that API directly:
+
+import requests
+res = requests.get("https://api.example.com/products")
+print(res.json())
+
+no scraping needed
+
+
+
+
+4. Application Panel (Storage & Cookies)
+
+What it is:
+
+Shows browser storage:
+
+Cookies
+
+LocalStorage
+
+SessionStorage
+
+
+Why important:
+
+Authentication tokens
+
+Login sessions
+
+Scraping logged-in data
+
+
+Practical Example:
+
+Go to:
+Application → Local Storage
+
+You may see:
+
+token: eyJhbGciOiJIUzI1...
+
+Real use:
+
+That token can be used in headers:
+
+headers = {
+  "Authorization": "Bearer eyJhbGciOiJIUzI1"
+}
+
+
+
+5. Sources Panel (JS Files)
+
+What it is:
+
+Shows all JavaScript files used by the site.
+
+Why important:
+
+See how logic works
+
+Find API URLs inside JS
+
+
+Practical Example:
+
+Open any .js file and search:
+
+/api/
+
+You may find:
+
+fetch("/api/users")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
