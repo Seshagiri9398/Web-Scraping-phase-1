@@ -1,0 +1,227 @@
+1. What is curl_cffi?
+
+curl_cffi is a Python HTTP client that can pretend to be a real browser (Chrome, Firefox, Safari, etc.) at a deep level.
+
+Unlike requests or httpx, it does not just send headers — it also copies:
+
+TLS / JA3 fingerprint
+
+HTTP/2 fingerprint
+
+So websites think:
+
+“This request is coming from a real Chrome browser.”
+
+
+
+2. Why curl_cffi exists (the problem it solves)
+
+Modern websites use bot detection like:
+
+Cloudflare
+
+Akamai
+
+DataDome
+
+Kasada
+
+They check:
+
+TLS fingerprint
+
+HTTP/2 behavior
+
+Header patterns
+
+
+Example:
+
+If you use:
+
+requests.get(url)
+
+
+You may get:
+
+403 Forbidden
+
+Empty page
+
+Captcha
+
+Because your TLS fingerprint looks like a bot.
+
+curl_cffi fixes this by using libcurl-impersonate (real browser fingerprints).
+
+
+
+3. How curl_cffi works 
+
+Normal requests:
+
+Your Script → Python TLS → Website
+Website → "This is not Chrome" → Block
+
+
+curl_cffi:
+
+Your Script → curl_cffi
+curl_cffi → Real Chrome TLS + HTTP/2 fingerprint
+Website → "This is Chrome" → Allow
+
+It uses:
+
+Real browser TLS signatures
+
+Real HTTP/2 behavior
+
+Real header ordering
+
+
+4. The parameter: impersonate
+
+This is the main feature.
+
+
+Example:
+
+import curl_cffi
+
+r = curl_cffi.get(
+    "https://tls.browserleaks.com/json",impersonate="chrome"
+)
+
+print(r.json())
+
+Now your request looks exactly like Chrome.
+
+
+5. What exactly is being impersonated?
+
+
+  Layer         What curl_cffi copies 
+
+  TLS           ->JA3 fingerprint       
+  HTTP/2        ->Frame patterns        
+  Headers       ->Real browser headers  
+  Order         ->Header ordering       
+  SSL           ->Cipher suites         
+
+6. Supported browsers
+
+You can impersonate:
+
+impersonate="chrome"
+impersonate="firefox"
+impersonate="safari"
+impersonate="edge"
+impersonate="tor"
+
+
+Specific versions:
+
+
+impersonate="chrome124"
+impersonate="firefox135"
+impersonate="safari184"
+
+
+
+7. Sessions (cookies like real browser)
+
+from curl_cffi import Session
+
+s = Session()
+s.get("https://httpbin.org/cookies/set/user/sesha")
+r = s.get("https://httpbin.org/cookies")
+
+print(r.json())
+
+Just like a browser:
+
+Cookies persist
+
+Sessions maintained
+
+
+
+8. Proxies + Impersonation
+
+proxies = {"https": "http://localhost:3128"}
+
+r = curl_cffi.get(
+    "https://example.com",
+    impersonate="chrome",
+    proxies=proxies
+)
+
+
+Now:
+
+IP from proxy
+
+Fingerprint from Chrome
+
+Perfect for scraping.
+
+
+9. Async scraping (fast)
+
+import asyncio
+from curl_cffi import AsyncSession
+
+async def main():
+    async with AsyncSession() as s:
+        r = await s.get("https://example.com", impersonate="chrome")
+        print(r.text)
+
+asyncio.run(main())
+
+High speed + browser identity.
+
+
+
+10. Real-world analogy
+
+Imagine entering a gated office:
+
+
+requests → shows fake ID → blocked
+
+httpx → better fake ID → still blocked
+
+curl_cffi → real employee badge → allowed
+
+Playwright → real person enters
+
+
+
+12. When should YOU use curl_cffi?
+
+
+For your web scraping projects:
+
+
+ Situation       Best tool  
+ -----------    ---------- 
+ Simple site   -> requests   
+ 403 error     -> curl_cffi  
+ Cloudflare    -> curl_cffi  
+ JS-heavy      -> Playwright 
+ Login flow    -> Selenium   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
