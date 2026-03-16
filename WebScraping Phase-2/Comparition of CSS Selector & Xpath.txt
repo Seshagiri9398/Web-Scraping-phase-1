@@ -1,0 +1,323 @@
+1. What is CSS Selector?
+
+CSS Selector is used to select HTML elements using:
+
+  Tag name
+
+  ID
+
+  Class
+
+  Attributes
+
+  Element relationships
+
+It is mainly used in:
+
+  CSS styling
+
+  JavaScript (querySelector)
+
+  Selenium (By.CSS_SELECTOR)
+
+Example:
+
+div
+#login
+.card
+input[type="text"]
+div > p
+
+
+
+2. What is XPath?
+
+XPath (XML Path Language) is used to navigate through HTML/XML structure.
+
+It can:
+
+  Move up (parent)
+
+  Move down (child)
+
+  Move sideways (siblings)
+
+  Select by text
+
+  Use logical conditions
+
+It is mainly used in:
+
+  Selenium (By.XPATH)
+
+  Scraping complex structures
+
+Example:
+
+//div
+//input[@type='text']
+//h2[text()='Login']
+
+
+
+3. Basic Syntax Difference
+
+CSS Selector	          XPath
+#id	                 //*[@id='id']
+.class	             //*[@class='class']
+div > p               //div/p
+div span     	    //div//span
+input[type='text']	    //input[@type='text']
+
+
+
+
+4. Key Differences
+
+| Feature            | CSS Selector   | XPath            |
+| ------------------ | -------------- | ---------------- |
+| Speed              | Faster         | Slightly slower  |
+| Readability        | Simple         | Slightly complex |
+| Move to parent     | Not possible   | Possible         |
+| Select by text     | No             | Yes              |
+| Logical conditions | Limited        | Powerful         |
+| Browser support    | Excellent      | Excellent        |
+
+
+
+
+5. Major Differences 
+
+
+1. Parent Selection
+
+XPath:
+
+  -> //span/parent::div
+
+CSS:
+  -> Cannot move to parent directly.
+
+XPath is powerful here.
+
+
+
+2. Selecting by Text
+
+XPath:
+
+  -> //h2[text()='Python']
+
+CSS:
+  -> Cannot select by text.
+
+XPath wins.
+
+
+
+3. Logical Conditions
+
+XPath:
+
+  -> //input[@type='text' and @name='email']
+
+CSS:
+
+  -> input[type='text'][name='email']
+
+Both support multiple attributes, but XPath supports more complex logic.
+
+
+
+4. Speed
+
+  -> CSS is generally faster
+
+  -> XPath is slightly slower
+
+
+
+5. Readability
+
+  -> CSS is simpler and shorter
+
+  -> XPath can become complex
+
+
+
+
+6. When to Use CSS?
+
+Use CSS when:
+
+  -> Structure is simple
+  -> Selecting by class or id
+  -> No need for parent navigation
+  -> Performance matters
+
+Example:
+
+div.product > h2.title
+
+
+
+
+7. When to Use XPath?
+
+Use XPath when:
+
+  -> Need to select by text
+  -> Need parent element
+  -> Complex conditions
+  -> Dynamic web pages
+
+Example:
+
+//h2[text()='Login']/parent::div
+
+
+8. Final Conclusion 
+
+  -> CSS is simple and faster
+  -> XPath is powerful and flexible
+  -> XPath can move upward (parent), CSS cannot
+  -> XPath can select by text, CSS cannot
+
+For simple scraping → Use CSS
+For complex scraping → Use XPath
+
+
+
+9. Project Scenario
+
+
+  -> Daily price tracking
+
+  -> Competitor monitoring
+
+  -> Data stored in CSV/Database
+
+
+
+Step 1: Understanding the Website
+
+First, we:
+
+  -> Opened the website in browser
+
+  -> Right-click → Inspect
+
+  -> Checked how product cards are structured
+
+Example HTML:
+
+<div class="product-card">
+   <h2 class="title">iPhone 15</h2>
+   <span class="price">$999</span>
+   <span class="rating">4.5</span>
+</div>
+
+
+
+Step 2: Deciding CSS or XPath
+
+Situation 1: Simple Structure
+
+  -> If elements had proper class names:
+
+      <h2 class="title">
+
+We used CSS Selector:
+
+  -> div.product-card > h2.title
+
+Because:
+
+  -> Cleaner
+  -> Faster
+  -> Easy to maintain
+
+Situation 2: Complex Structure
+
+
+  -> Sometimes price was inside nested dynamic divs:
+
+   <div>
+      <div>
+         <span>$999</span>
+      </div>
+   </div>
+
+No proper class.
+
+So we used XPath:
+
+  -> //h2[text()='iPhone 15']/following-sibling::span
+
+Because:
+  
+   Needed to select using text
+   Needed sibling navigation
+
+This is where XPath is powerful.
+
+
+
+Step 3: Automation Using Selenium
+
+We used:
+
+  -> driver.find_elements(By.CSS_SELECTOR, "div.product-card")
+
+Then inside loop:
+
+  -> title = card.find_element(By.CSS_SELECTOR, "h2.title").text
+  -> price = card.find_element(By.CSS_SELECTOR, "span.price").text
+
+
+If text-based targeting was required:
+
+  -> driver.find_element(By.XPATH, "//h2[text()='iPhone 15']")
+
+
+Step 4: Handling Real Challenges
+
+In real projects, problems come:
+
+
+1. Dynamic Classes
+
+Classes like:
+
+  -> xYz123_ab
+
+Solution:
+  -> Use XPath with contains():
+
+    -> //div[contains(@class,'product')]
+
+
+2. Pagination
+
+We handled:
+
+  -> for page in range(1, 10):
+
+Or clicked next button using:
+
+  -> //a[text()='Next']
+
+
+3. Loading Delays
+
+Used Explicit Wait:
+
+  -> WebDriverWait(driver, 10).until(
+         EC.presence_of_element_located((By.CSS_SELECTOR, "div.product-card"))
+      )
+
+
+
+
+
+
