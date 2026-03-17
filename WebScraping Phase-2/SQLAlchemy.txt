@@ -1,0 +1,165 @@
+What is SQLAlchemy?
+
+
+SQLAlchemy is a Python library used to work with databases.
+
+It helps you:
+
+Connect to a database
+
+Write SQL queries
+
+Insert / Update / Delete data
+
+Map Python classes to database tables
+
+
+It has two main parts:
+
+1.Core
+2.ORM
+
+1. SQLAlchemy Core 
+
+Think of Core like:
+
+"I want to write SQL queries using Python."
+
+
+It gives you:
+
+SQL Expression Language
+
+Database connection tools
+
+Transactions
+
+Engine management
+
+
+It is:
+
+✔ Schema-centric
+✔ Command-oriented
+✔ Closer to SQL
+✔ More control
+
+Example idea:
+
+from sqlalchemy import create_engine, text
+
+engine = create_engine("sqlite:///example.db")
+
+with engine.connect() as conn:
+    result = conn.execute(text("SELECT * FROM users"))
+    for row in result:
+        print(row)
+
+Here → you are writing SQL manually.
+
+
+
+2. SQLAlchemy ORM
+
+ORM = Object Relational Mapper
+
+
+Think of ORM like:
+
+"I want to work with Python objects, not SQL."
+
+Instead of writing SQL, you create Python classes.
+
+
+Example idea:
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+
+
+Now you can:
+
+user = User(name="Seshagiri")
+session.add(user)
+session.commit()
+
+You didn’t write SQL.
+
+SQLAlchemy automatically generates:
+
+INSERT INTO users (name) VALUES ('Seshagiri')
+
+
+
+-> Core vs ORM
+
+| Feature              | Core          | ORM                       |
+| -------------------- | ------------- | ------------------------- |
+| Focus                | SQL queries   | Python objects            |
+| Style                | Command-based | State-based               |
+| Control              | High          | Medium                    |
+| Easier for beginners | Medium        | Easier                    |
+| Used in              | APIs, scripts | Web apps, backend systems |
+
+
+
+
+
+
+-> Architecture Layers
+
+ORM
+  ⬆
+Core
+  ⬆
+Database (MySQL / PostgreSQL / SQLite)
+
+
+ORM uses Core internally.
+
+
+
+Installation 
+
+Normal install:
+
+   -> pip install sqlalchemy
+
+With asyncio support:
+
+   -> pip install sqlalchemy[asyncio]
+
+
+
+Database API (DBAPI)
+
+SQLAlchemy does not directly talk to the database.
+
+It uses:
+
+SQLAlchemy → DBAPI → Database
+
+Example:
+
+| Database   | DBAPI    |
+| ---------- | -------- |
+| SQLite     | sqlite3  |
+| MySQL      | pymysql  |
+| PostgreSQL | psycopg2 |
+
+
+
+Why SQLAlchemy is Powerful?
+
+Because:
+
+✔ Works with many databases
+✔ Clean architecture
+✔ Supports sync + async
+✔ Used in frameworks like Flask & FastAPI
+✔ Very scalable
+
+
