@@ -1,0 +1,235 @@
+1. What is Selenium?
+
+   Selenium is a browser automation tool.
+
+   It is used to control web browsers automatically like a real user.
+
+we can:
+
+   Open websites
+
+   Click buttons
+
+   Fill forms
+
+   Scroll pages
+
+   Extract data
+
+   Run tests automatically
+
+
+
+2. Why Selenium is used?
+
+Selenium is mainly used for:
+
+Automation Testing:
+
+   Test web applications automatically.
+
+   Example: Login test, signup test, checkout test.
+
+Web Automation:
+
+   Automate repetitive tasks.
+
+   Example: Auto-fill forms, auto-download reports.
+
+Web Scraping (Dynamic sites):
+
+   Scrape websites that use JavaScript.
+
+   Example: Content that loads after clicking or scrolling.
+
+
+
+3. What is WebDriver?
+
+   WebDriver = the core of Selenium
+
+   It is the engine that controls the browser.
+
+It can:
+
+   Sends commands to the browser
+
+   Browser executes them like a real user
+
+
+Example:
+
+    from selenium import webdriver
+
+    driver = webdriver.Chrome()
+    driver.get("http://selenium.dev")
+    driver.quit()
+
+
+explain the code:
+
+    Open Chrome
+
+    Go to selenium.dev
+
+    Close browser
+
+4.Main Selenium Components:
+
+1. WebDriver
+
+    Drives the browser.
+
+Use when:
+
+    You want to automate Chrome, Firefox, Edge, etc.
+
+2. Selenium Manager
+
+Automatically:
+
+    Downloads browser drivers
+
+    Manages versions
+
+You don’t need to manually install drivers anymore.
+
+
+
+3. Selenium Grid
+
+Used for:
+
+    Running tests on multiple machines
+
+    Running tests in parallel
+
+Example:
+
+Test same website on:
+
+    Chrome
+    Firefox
+    Edge
+at the same time.
+
+
+4. Selenium IDE
+
+    A record & playback tool.
+
+You:
+
+    Click on browser
+
+    Selenium records actions
+
+    Plays them back later
+
+
+5. IE Driver Server
+
+Used only for:
+
+    Internet Explorer (old browser)
+
+    Rarely used now
+
+
+
+5. When should you use Selenium?
+
+Use Selenium if:
+
+    Website is dynamic (JavaScript)
+
+    Buttons, popups, scrolling needed
+
+    API or Requests cannot handle it
+
+Don’t use Selenium if:
+
+    Website is simple static HTML
+
+    You only need raw data (use Requests + BeautifulSoup instead)
+
+
+
+6.How Selenium works in real life:
+
+
+Example flow:
+
+     Your Python code says: open Google
+
+     WebDriver sends command
+
+     Chrome opens
+
+     Website loads
+
+     Selenium clicks, types, reads data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
