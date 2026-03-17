@@ -1,0 +1,224 @@
+Selenium Examples:
+
+import pandas as pd
+from selenium.webdriver import Chrome, ChromeOptions
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+
+CHROME_DRIVER_PATH = 'c:/WebDrivers/chromedriver.exe'
+HOMEPAGE = "http://books.toscrape.com"
+
+
+def get_data(url, categories):
+    browser_options = ChromeOptions()
+    browser_options.headless = True
+
+    driver = Chrome(executable_path=CHROME_DRIVER_PATH, options=browser_options)
+    driver.get(url)
+    driver.implicitly_wait(10)
+    data = []
+    for category in categories:
+        humor = driver.find_element_by_xpath(f'//a[contains(text(),{category})]')
+        humor.click()
+
+        try:
+            books = WebDriverWait(driver, 10).until(
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.product_pod'))
+            )
+        except Exception as e:
+            raise e
+
+        for book in books:
+            title = book.find_element_by_css_selector("h3 > a")
+            price = book.find_element_by_css_selector(".price_color")
+            stock = book.find_element_by_css_selector(".instock.availability")
+            data.append({
+                'title': title.get_attribute("title"),
+                'price': price.text,
+                'stock': stock.text,
+                'Category': category
+            })
+
+        driver.get(url)
+
+    driver.quit()
+    return data
+
+
+def export_csv(data):
+    df = pd.DataFrame(data)
+    # Apply transformations if needed
+    df.to_csv("books_exported.csv", index=False)
+    print(df)  # DEBUG
+
+
+def main():
+    data = get_data(url=HOMEPAGE, categories=["Humor", "Art"])
+    export_csv(data)
+    print('DONE')
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+Explain The Example of Selenium:
+
+
+understand the project does:
+
+      Open the website
+
+      Click categories (Humor, Art)
+
+Collect:
+
+      Title
+
+      Price
+
+      Stock status
+
+Save data into CSV file
+
+
+1. Imports:
+
+import pandas as pd
+
+      Used to create DataFrame and export CSV.
+
+ 
+from selenium.webdriver import Chrome, ChromeOptions
+
+      Used to open Chrome browser.
+
+
+from selenium.webdriver.common.by import By
+
+      Used to locate elements (like ID, CSS, XPATH).
+
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+      Used for explicit wait (wait until element appears).
+
+
+
+2. Constants:
+
+CHROME_DRIVER_PATH = 'c:/WebDrivers/chromedriver.exe'
+HOMEPAGE = "http://books.toscrape.com"
+
+     Driver path
+     Website URL
+
+
+
+3. get_data() Function:
+
+This function does all scraping.
+
+
+
+Step 1: Setup Browser
+
+browser_options = ChromeOptions()
+browser_options.headless = True
+
+Headless = runs browser in background (no UI)
+
+
+Step 2: Open Website:
+
+driver = Chrome(executable_path=CHROME_DRIVER_PATH, options=browser_options)
+driver.get(url)
+driver.implicitly_wait(10)
+
+Open Chrome
+Go to homepage
+Wait up to 10 seconds
+
+
+Step 3: Loop Through Categories
+
+for category in categories:
+
+It loops like:
+
+First → Humor
+
+Second → Art
+
+
+
+Step 4: Click Category
+
+humor = driver.find_element_by_xpath(f'//a[contains(text(),{category})]')
+humor.click()
+
+Finds category link
+Clicks it
+
+
+Step 5: Wait for Books to Load
+
+books = WebDriverWait(driver, 10).until(
+    EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.product_pod'))
+)
+
+Wait until book elements appear
+.product_pod = each book card
+
+
+
+Step 6: Extract Book Data
+
+for book in books:
+
+For each book:
+
+title = book.find_element_by_css_selector("h3 > a")
+price = book.find_element_by_css_selector(".price_color")
+stock = book.find_element_by_css_selector(".instock.availability")
+
+Get title
+Get price
+Get stock
+
+Then store:
+
+data.append({
+    'title': title.get_attribute("title"),
+    'price': price.text,
+    'stock': stock.text,
+    'Category': category
+})
+
+
+
+Step 7: Go Back to Homepage
+
+driver.get(url)
+
+So it can click next category.
+
+
+Step 8: Close Browser
+
+driver.quit()
+
+
+4. export_csv() Function:
+
+df = pd.DataFrame(data)
+df.to_csv("books_exported.csv", index=False)
+
+
+Convert list → DataFrame
+Save to CSV
