@@ -1,0 +1,199 @@
+1. What is Flask
+
+Flask is a Python web framework.
+
+It helps you build:
+
+Websites
+
+Web applications
+
+APIs
+
+Very easily.
+
+
+It is:
+
+   -> Lightweight
+
+   -> Simple
+
+   -> Beginner friendly
+
+   -> Flexible
+
+
+
+2. What is a Web Framework
+
+When you open a website:
+
+Browser → sends request → Server → sends response → Browser shows page
+
+
+A web framework helps you:
+
+   -> Receive request
+
+   -> Process it
+
+   -> Send response
+
+Flask handles this for you.
+
+
+
+
+3. Flask Depends On
+
+Flask uses 3 important tools internally:
+
+Werkzeug
+→ Handles request & response (WSGI stuff)
+
+Jinja
+→ Used to create HTML templates
+
+Click
+→ Used for command line commands
+
+You don’t need to worry about them now. Flask handles them.
+
+
+
+example code:
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello, World!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+output:
+http://127.0.0.1:5000
+
+-> run in the browser
+Hello, World!
+
+
+
+
+4. Now Let’s Understand Important Concepts
+
+
+1. Routing
+
+@app.route("/about")
+def about():
+    return "About Page"
+
+Routing means:
+
+URL → Function
+
+Example:
+
+| URL      | Function |
+| -------- | -------- |
+| `/`      | home()   |
+| `/about` | about()  |
+
+
+
+2.Templates (HTML Pages)
+
+Instead of returning text, we return HTML.
+
+Create folder:
+
+templates/
+
+Inside it create:
+
+index.html
+
+   -> <h1>Hello {{ name }}</h1>
+
+Now update Python:
+
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("index.html", name="Sesha")
+
+-> Flask uses Jinja to replace {{ name }}.
+
+
+
+3. Debug Mode
+
+app.run(debug=True)
+
+This:
+
+Automatically reloads on change
+
+Shows error details
+
+Only use in development
+
+
+
+4. Request Data (Forms)
+
+from flask import request
+
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.form["username"]
+    return f"Welcome {username}"
+
+Flask gives you:
+
+request.form
+
+request.args
+
+request.json
+
+
+
+5. Redirect
+
+from flask import redirect, url_for
+
+return redirect(url_for("home"))
+
+->Redirect means move user to another page.
+
+
+
+6. Sessions
+
+Used to store data temporarily.
+
+from flask import session
+
+app.secret_key = "secret"
+
+session["user"] = "Sesha"
+
+
+
+
+
+
+
+
+
