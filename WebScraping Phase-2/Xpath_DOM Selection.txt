@@ -1,0 +1,243 @@
+
+1. Basic XPath Structure 
+
+Select all <div> elements on page
+  -> //div
+
+Relative path
+  -> .//span
+
+Root path (Avoid in Selenium)
+  -> /html/body/div
+
+Always prefer:
+
+//
+
+Avoid absolute XPath
+
+
+
+2. Attribute Selection 
+
+  -> //input[@type='text']
+
+Multiple conditions:
+
+  -> //input[@type='text' and @name='email']
+
+Attribute exists:
+
+  -> //a[@href]
+
+
+
+
+3. Text-Based Selection 
+
+Exact text:
+
+  -> //button[text()='Submit']
+
+Partial text:
+
+  -> //button[contains(text(),'Sub')]
+
+Very useful in Selenium.
+
+
+
+4.  contains()
+
+Used for dynamic class names.
+
+  -> //div[contains(@class,'product')]
+
+Text contains:
+
+  -> //p[contains(text(),'Welcome')]
+
+Used in 80% of real projects.
+
+
+
+5. starts-with()
+
+  -> //div[starts-with(@class,'prod')]
+
+Used when class starts with same prefix.
+
+
+
+6. Indexing (Position)
+
+First element:
+
+  -> (//div)[1]
+
+Last element:
+
+  -> (//div)[last()]
+
+Second list item:
+
+  -> //ul/li[2]
+
+Position function:
+
+  -> //li[position()>1]
+
+
+
+
+7. Parent Selection  -> CSS cannot do this
+
+  -> //span/parent::div
+
+Or simply:
+
+//span/..
+
+Very powerful feature.
+
+
+
+8. Following Sibling
+
+Next sibling:
+
+  -> //label/following-sibling::input
+
+All following siblings:
+
+  -> //h1/following-sibling::ul
+
+Used in forms and table extraction.
+
+
+
+9. Ancestor -> Move Up Multiple Levels
+
+  -> //span/ancestor::div
+
+Closest matching parent:
+
+  -> //span/ancestor::div[@class='card']
+
+
+
+10. Logical Operators
+
+AND:
+
+  -> //div[@class='box' and @id='main']
+
+OR:
+
+  -> //a[@id='x' or @name='y']
+
+NOT:
+
+  -> //h1[not(@id)]
+
+
+
+
+11. count()
+
+  -> //ul[count(li) > 2]
+
+Select UL that has more than 2 LI children.
+
+
+
+
+12. normalize-space() (Hidden Powerful Tool)
+
+Removes extra spaces.
+
+  -> //button[normalize-space()='Submit']
+
+Very useful when text has spaces.
+
+13. Union Operator ( | )
+
+  -> //a | //div
+
+Select both <a> and <div>.
+
+14. Select Attribute Value
+  
+  -> //a/@href
+
+Used in scraping with lxml.
+
+15. Select Text Node
+
+  -> //span/text()
+
+
+
+
+
+
+
+
+
+DOM Selection API – Important Methods
+
+
+Now from your DOM Selection:
+
+1. document.getSelection()
+
+  -> var sel = document.getSelection()
+
+Gets current selected text.
+
+
+
+2. Important Selection Methods
+
+Deselect:
+
+  -> sel.removeAllRanges()
+
+Add selection:
+
+  -> sel.addRange(range)
+
+Delete selected content:
+
+  -> sel.deleteFromDocument()
+
+Collapse selection:
+
+  -> sel.collapseToStart()
+  -> sel.collapseToEnd()
+
+Check if collapsed:
+
+  -> sel.isCollapsed
+
+Get specific range:
+
+  -> sel.getRangeAt(0)
+
+
+-> Industry Usage
+
+In Selenium:
+
+We mostly use XPath functions
+
+Rarely use DOM Selection API
+
+
+DOM Selection API is mainly for:
+
+JavaScript editing tools
+
+Text editors
+
+Browser extensions
