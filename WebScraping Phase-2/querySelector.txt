@@ -1,0 +1,338 @@
+1. querySelector() – Web APIs
+
+
+The querySelector() method is a JavaScript function used to select (target) HTML elements from a webpage.
+
+
+It is very important in:
+
+
+Web Scraping (understanding how elements are selected)
+
+DOM Manipulation
+
+Automation (like Selenium)
+
+Frontend Development
+
+
+2. What is querySelector()?
+
+
+querySelector() is a method of the Document Object Model (DOM).
+
+It allows you to select the first element that matches a CSS selector.
+
+
+
+3. Syntax
+
+js code:
+
+document.querySelector(selectors);
+
+
+-> Parameter:
+
+selectors → A string containing CSS selector
+
+
+-> Returns:
+
+The first matching element
+
+If no match → returns null
+
+
+
+4. Simple Example
+
+HTML:
+
+<h1 id="title">Welcome</h1>
+<p class="desc">Learning JavaScript</p>
+
+
+JavaScript:
+
+let element = document.querySelector("#title");
+console.log(element);
+
+
+Output: <h1 id="title">Welcome</h1>
+
+-> It selected element using ID selector.
+
+
+
+5. How It Works:
+
+
+Browser loads HTML
+
+Browser creates DOM
+
+querySelector() searches DOM
+
+Returns first matched element
+
+
+You can:
+
+
+Read text
+
+Change style
+
+Modify content
+
+Extract data
+
+
+
+6. How It Searches 
+
+The browser searches using:
+
+-> Depth-first pre-order traversal
+
+
+Simple meaning:
+
+Start from the first element in HTML.
+
+Go inside its children.
+
+Check each element one by one.
+
+Stop when the first match is found.
+
+
+That’s why:
+
+It always returns only the first matching element
+
+Even if many elements match
+
+
+
+7. Types of Selectors You Can Use
+
+
+1. ID Selector
+
+js code:
+document.querySelector("#myId");
+
+Selects element with ID = myId
+ID must be unique
+
+
+2. Class Selector
+
+js code:
+document.querySelector(".myClass");
+
+->Selects first element with class = myClass
+
+
+3. Tag Selector
+
+js code:
+document.querySelector("p");
+
+->Selects first <p> tag
+
+
+4. Attribute Selector
+
+js code:
+document.querySelector("input[type='text']");
+
+->Selects input where type = text
+
+5. Descendant Selector
+
+js code:
+document.querySelector("div p");
+
+->Selects first <p> inside <div>
+
+
+6. Multiple Conditions
+
+js code:
+document.querySelector("div.box p.text");
+
+
+Selects:
+
+<p>
+
+inside div with class box
+
+and p has class text
+
+
+
+8. Important Difference
+
+querySelector()
+
+-> Returns ONLY FIRST matching element
+
+
+If you want ALL elements use:
+
+js code:
+document.querySelectorAll("p");
+
+-> Returns NodeList (like array)
+
+Example:
+
+js code:
+let elements = document.querySelectorAll(".item");
+
+
+
+
+9. What Happens If Element Not Found?
+
+js code:
+let el = document.querySelector(".unknown");
+
+-> Returns null
+
+So always check:
+
+if (el) {
+   console.log(el.textContent);
+}
+
+
+
+
+Examples:
+
+
+Example 1: Complex Selector
+
+js code:
+
+const el = document.querySelector(
+  "div.user-panel.main input[name='login']"
+);
+
+
+Meaning:
+
+Find a <div>
+
+With classes user-panel AND main
+
+Inside that div find <input>
+
+With name="login"
+
+Very powerful 
+
+
+Example 2: Negation
+
+js code:
+
+const el = document.querySelector(
+  "div.user-panel:not(.main) input[name='login']"
+);
+
+
+Meaning:
+
+Select div with class user-panel
+
+BUT NOT class main
+
+Then find input inside it
+
+
+
+10. Escaping Special Characters
+
+Sometimes IDs or classes contain special characters.
+
+
+Example:
+
+html:
+
+<div id="this?element"></div>
+
+
+-> This is NOT a valid CSS identifier because ? is special.
+
+
+
+If you do:
+
+js code:
+
+document.querySelector("#this?element");
+
+It throws SyntaxError
+
+
+Solution 1: Use CSS.escape()
+
+js code:
+
+document.querySelector(`#${CSS.escape("this?element")}`);
+
+
+Solution 2: Manual Escape
+
+js code:
+
+document.querySelector("#this\\?element");
+
+
+->  \\? is needed because:
+
+-> First \ escapes ?
+
+-> Second \ escapes the backslash in JavaScript string
+
+
+
+
+11. Related Methods 
+
+
+Element.querySelector()
+
+Document.querySelectorAll()
+
+Element.querySelectorAll()
+
+
+Difference:
+
+document.querySelector()
+
+→ Searches entire document
+
+element.querySelector()
+
+→ Searches inside that specific element only
+
+
+
+
+
+
+
+
+
+
+
+
